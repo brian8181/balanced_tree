@@ -1,6 +1,7 @@
 #ifndef __tree_HPP
 #define __tree_HPP
 
+#include <list>
 #include "node.hpp"
 
 template<typename T>
@@ -35,13 +36,13 @@ public:
 		return _root;
 	}
 
-	void insert( node<T> n )
+	void insert( node<T>* n )
 	{
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{
-			cur_node = ( n._value < cur_node._value )
-				? cur_node._right : cur_node._left;
+			cur_node = ( n->get_value() < cur_node->get_value() )
+				? cur_node->get_right() : cur_node->get_left();
 		}
 		cur_node = n;
 	}
@@ -56,34 +57,40 @@ public:
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{
-			if( cur_node->_value == val )
+			if( cur_node->get_value() == val )
 			{
-				if( cur_node->_parent.left == cur_node )
-				{
-					cur_node->_parent.left = cur_node->_left;
-					cur_node->_left->_right = cur_node->_right;
-				}
-				else
-				{
-					cur_node->_parent.right = cur_node->_left;
-					cur_node->_left->_right = cur_node->_right;
-				}
+
 			}
 		}
 	}
 
-	node<T>* find( T va l)
+	node<T>* find( T val )
 	{
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{
-			if( cur_node->_value == val )
+			if( cur_node->get_value() == val )
 				return cur_node;
 
-			cur_node = ( val < cur_node._value )
-				? cur_node = cur_node._right : cur_node = cur_node._left;
+			cur_node = ( val < cur_node->get_value() )
+				? cur_node = cur_node->get_right() : cur_node = cur_node->get_left();
 		}
 		return cur_node; // 0
+	}
+
+	void get_all(std::list<node<T>*>& nodes)
+	{
+		node<T>* cur_node = _root;
+		while( cur_node != 0 )
+		{
+			if(cur_node->get_left() != 0)
+				cur_node == cur_node->get_left();
+			else if (cur_node->get_right() != 0)
+				cur_node == cur_node->get_right();
+			else
+				return;
+			nodes.push_front(cur_node);
+		}
 	}
 
 private:

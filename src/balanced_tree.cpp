@@ -13,6 +13,7 @@
 #include <sstream>
 #include "bash_color.hpp"
 #include "tree.hpp"
+#include "node.hpp"
 
 using std::string;
 using std::stringstream;
@@ -89,7 +90,27 @@ int parse_options(int argc, char* argv[])
 	string path = argv[0];   // get exe file path
 	cout << argv[0] << endl;
 
+
+	node<int> root;
+	root.set_value(20);
+	node<int> n1;
+	n1.set_value(20);
+	// node<int> n2;
+	// n1.set_value(6);
+	// node<int> n3(21);
 	tree<int> t;
+	t.insert(&root);
+	t.insert(&n1);
+
+	std::list<node<int>*> nodes;
+	t.get_all( nodes );
+
+	std::list<node<int>*>::iterator end = nodes.end();
+	for(std::list<node<int>*>::iterator iter = nodes.beg(); beg != end; ++beg)
+	{
+		std::cout << (*iter)->get_value() << endl;
+	}
+
 
 	stringstream ss;
 	ss << "Boo! - " << " file:" << __FILE__ << " line:" << __LINE__ << endl;

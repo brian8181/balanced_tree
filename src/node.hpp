@@ -41,7 +41,7 @@ public:
 		return _value;
 	}
 
-	void set_value( T& n )
+	void set_value( T n )
 	{
 		_value = n;
 	}

@@ -26,47 +26,47 @@ else
 	LDFLAGS += -lfmt -lcppunit
 endif
 
-all: $(BLD)/balanced_tree $(BLD)/balanced_tree_test $(BLD)/libbalanced_tree.so $(BLD)/libbalanced_tree.a
+all: $(BLD)/$(APP) $(BLD)/$(APP)_test $(BLD)/lib$(APP).so $(BLD)/lib$(APP).a
 
 rebuild: clean all
 
 run_file:
 	@bash arch.sh
 
-$(BLD)/balanced_tree: $(OBJ)/balanced_tree.o $(BLD)/tree.o $(BLD)/node.o
+$(BLD)/$(APP): $(OBJ)/$(APP).o $(BLD)/tree.o $(BLD)/node.o
 	 $(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
 
-$(BLD)/balanced_tree_test: $(OBJ)/balanced_tree_test.o $(OBJ)/tree.o $(OBJ)/node.o
+$(BLD)/$(APP)_test: $(OBJ)/$(APP)_test.o $(OBJ)/tree.o $(OBJ)/node.o
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
 
-$(BLD)/libbalanced_tree.so: $(BLD)/balanced_tree.o
+$(BLD)/lib$(APP).so: $(BLD)/$(APP).o
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
-	-chmod 755 $(BLD)/libbalanced_tree.so
+	-chmod 755 $(BLD)/lib$(APP).so
 
-$(BLD)/libbalanced_tree.a: $(BLD)/balanced_tree.o
-	-ar rvs $@ $(BLD)/balanced_tree.o
+$(BLD)/lib$(APP).a: $(BLD)/$(APP).o
+	-ar rvs $@ $(BLD)/$(APP).o
 	-chmod 755 $@
 
 $(OBJ)/%.o: $(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 install:
-	cp ./$(BLD)/balanced_tree ./$(prefix)/bin/balanced_tree
+	cp ./$(BLD)/$(APP) ./$(prefix)/bin/$(APP)
 
 uninstall:
-	-rm ./$(prefix)/bin/balanced_tree
+	-rm ./$(prefix)/bin/$(APP)
 
 clean:
 	-rm -f ./$(OBJ)/*.o
 	-rm -f ./$(BLD)/*.o
-	-rm -f ./$(BLD)/balanced_tree*
+	-rm -f ./$(BLD)/$(APP)*
 
 help:
 	@echo  '  all         - build all'
-	@echo  '  balanced_tree          - build balanced_tree executable'
-	@echo  '  balanced_tree.o        - build not link'
-	@echo  '  balanced_tree_test     - build cppunit test'
-	@echo  '  balanced_tree_test.o   - build cppunit test'
+	@echo  '  $(APP)          - build $(APP) executable'
+	@echo  '  $(APP).o        - build not link'
+	@echo  '  $(APP)_test     - build cppunit test'
+	@echo  '  $(APP)_test.o   - build cppunit test'
 	@echo  '  clean                  - remove all files from build dir'
 	@echo  '  install                - copy files to usr/local'
 	@echo  '  dist                   - create distribution, tar.gz'

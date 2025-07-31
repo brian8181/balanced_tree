@@ -13,6 +13,16 @@ public:
 
 	virtual ~node()	{	}
 
+	bool is_left()
+	{
+		return (this == _parent.left);
+	}
+
+	bool is_right()
+	{
+		return (this == _parent.right);
+	}
+
 	bool operator<( const node<T>& that )
 	{
 		return *this->_value < that._value;

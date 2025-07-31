@@ -5,40 +5,48 @@ template<class T>
 class node
 {
 public:
-	node() : _parent( 0 ), _left( 0 ), _right( 0 ) {	}
+	node() : _parent( 0 ), _left( 0 ), _right( 0 )
+	{
+	}
 
-	node( node<T>* parent, node<T>* left, node<T>* right ) : _parent( parent ), _left( left ), _right( right ) {	}
+	node( node<T>* parent, node<T>* left, node<T>* right ) : _parent( parent ), _left( left ), _right( right )
+	{
+	}
 
-	node( const node<T>& n ) : _parent( n._parent ), _left( n._left ), _right( n._right ) {	 }
+	node( const node<T>& n ) : _parent( n._parent ), _left( n._left ), _right( n._right )
+	{
+	}
 
-	virtual ~node()	{	}
+	virtual ~node()
+	{
+	}
 
 	bool is_left()
 	{
-		return (this == _parent.left);
+		return ( this == _parent.left );
 	}
 
 	bool is_right()
 	{
-		return (this == _parent.right);
+		return ( this == _parent.right );
 	}
 
 	bool operator<( const node<T>& that )
 	{
-		return *this->_value < that._value;
+		return ( *this->_value < that._value );
 	}
 
-	T get_value()
+	T get_value( )
 	{
 		return _value;
 	}
 
-	void set_value(T& n)
+	void set_value( T& n )
 	{
 		_value = n;
 	}
 
-	node<T>* get_parent()
+	node<T>* get_parent( )
 	{
 		return _parent;
 	}
@@ -48,17 +56,17 @@ public:
 		_parent = n;
 	}
 
-	node<T>* get_left()
+	node<T>* get_left( )
 	{
 		return _left;
 	}
 
-	void set_left( node* n)
+	void set_left( node* n )
 	{
 		_left = n;
 	}
 
-	node<T>* get_right()
+	node<T>* get_right( )
 	{
 		return _right;
 	}

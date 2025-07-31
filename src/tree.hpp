@@ -8,11 +8,11 @@ class tree
 {
 
 public:
-	tree()
+	tree( )
 	{
 	}
 
-	tree( node<T>* root )  : _root(root)
+	tree( node<T>* root )  : _root (root )
 	{
 	}
 
@@ -21,17 +21,16 @@ public:
 		_root = n._root;
 	}
 
+	virtual ~tree( )
+	{
+	}
+
 	bool operator<( const tree& that )
 	{
 		return false;
 	}
 
-	virtual ~tree()
-	{
-
-	}
-
-	node<T>* get_root()
+	node<T>* get_root( )
 	{
 		return _root;
 	}
@@ -39,15 +38,15 @@ public:
 	void insert( node<T> n )
 	{
 		node<T>* cur_node = _root;
-		while(cur_node != 0)
+		while( cur_node != 0 )
 		{
-			cur_node = (n._value < cur_node._value)
+			cur_node = ( n._value < cur_node._value )
 				? cur_node._right : cur_node._left;
 		}
 		cur_node = n;
 	}
 
-	void remove(node<T> node)
+	void remove( node<T> node )
 	{
 
 	}
@@ -55,11 +54,11 @@ public:
 	void remove( T val )
 	{
 		node<T>* cur_node = _root;
-		while(cur_node != 0)
+		while( cur_node != 0 )
 		{
-			if(cur_node->_value == val)
+			if( cur_node->_value == val )
 			{
-				if(cur_node->_parent.left == cur_node)
+				if( cur_node->_parent.left == cur_node )
 				{
 					cur_node->_parent.left = cur_node->_left;
 					cur_node->_left->_right = cur_node->_right;
@@ -73,15 +72,15 @@ public:
 		}
 	}
 
-	node<T>* find(T val)
+	node<T>* find( T va l)
 	{
 		node<T>* cur_node = _root;
-		while(cur_node != 0)
+		while( cur_node != 0 )
 		{
-			if(cur_node->_value == val)
+			if( cur_node->_value == val )
 				return cur_node;
 
-			cur_node = (val < cur_node._value)
+			cur_node = ( val < cur_node._value )
 				? cur_node = cur_node._right : cur_node = cur_node._left;
 		}
 		return cur_node; // 0

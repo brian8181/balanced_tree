@@ -65,7 +65,6 @@ public:
 		{
 			if( cur_node->get_value() == val )
 			{
-
 			}
 		}
 	}
@@ -84,18 +83,32 @@ public:
 		return cur_node; // 0
 	}
 
-	void get_all(std::list<node<T>*>& nodes)
+	void get_all( std::list<node<T>*>& nodes )
 	{
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{
-			cur_node = (cur_node->get_left() != 0) ? cur_node->get_left() : cur_node->get_right();
+			nodes.push_back(cur_node);
+			cur_node = (cur_node->get_left() != 0) ? cur_node->get_left() :
+				( (cur_node->get_right() != 0) ? cur_node->get_right() : cur_node = cur_node->get_parent()->get_right() );
 		}
 	}
 
+	static node<T>* make_node( const T& parent )
+	{
+		node<T>* p_node = new node<T>( &parent );
+		return p_node;
+	}
+
+	static node<T>* make_node( const T& parent, const T& left, const T& right )
+	{
+		node<T>* p_node = new node<T>( &parent, &left, &right );
+		return p_node;
+	}
+
 private:
-node<T>* _root;
-vector<node<T>*> _nodes;
+	node<T>* _root;
+	vector<node<T>*> _nodes;
 
 };
 

@@ -6,6 +6,7 @@
 APP=balanced_tree
 CXX=g++
 CXXFLAGS=-Wall -std=c++20 -fPIC -g
+CXXFLAGS=-std=c++20 -fPIC -g
 SRC?=src
 BLD?=build
 OBJ?=build

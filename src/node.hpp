@@ -9,6 +9,18 @@ public:
 	{
 	}
 
+	node( const T& parent )
+	{
+		_parent = new node<T>( &parent );
+	}
+
+	node( const T& parent, const T& left, const T& right )
+	{
+		_parent = new node<T>( &parent );
+		_left = new node<T>( &left );
+		_right = new node<T>( &right );
+	}
+
 	node( node<T>* parent, node<T>* left, node<T>* right ) : _parent( parent ), _left( left ), _right( right )
 	{
 	}
@@ -17,11 +29,14 @@ public:
 	{
 	}
 
-	virtual ~node()
+	virtual ~node( )
 	{
+		delete _parent;
+		delete _left;
+		delete _right;
 	}
 
-	bool is_left()
+	bool is_left( )
 	{
 		return ( this == _parent.left );
 	}

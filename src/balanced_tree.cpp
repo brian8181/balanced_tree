@@ -106,7 +106,7 @@ int parse_options(int argc, char* argv[])
 	t.get_all( nodes );
 
 	std::list<node<int>*>::iterator end = nodes.end();
-	for(std::list<node<int>*>::iterator iter = nodes.beg(); beg != end; ++beg)
+	for(std::list<node<int>*>::iterator iter = nodes.begin(); iter != end; ++iter)
 	{
 		std::cout << (*iter)->get_value() << endl;
 	}

@@ -17,6 +17,7 @@ LDFLAGS=$(INCLUDES) $(LIBS)
 
 ifdef DEBUG
 	CXXFLAGS += -DDEBUG
+	echo TEST
 endif
 
 ifdef CYGWIN

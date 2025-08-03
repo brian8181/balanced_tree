@@ -31,12 +31,6 @@ public:
 		double h = len;
 		while(h > 0)
 		{
-			// int idx = h/2;
-			// int offset = floor(idx/2);
-			// int left_idx = idx - offset;
-			// int right_idx = idx + offset;
-
-
 			//vector<T> vleft = std::span(v);
 			//.subspan(0, h);
 			cout << "h = " << h << std::endl;
@@ -46,19 +40,18 @@ public:
 	void balance( vector<T>& v, node<T>* n )
 	{
 		int len = v.size();
-		int idx = floor(len/2);
-		while(idx > 0)
+		int offset = floor( len/2 );
+		while( offset > 0 )
 		{
-			int offset = floor(idx/2);
-			n = v[idx];
-			n.set_left(v[idx - offset]);
-			n.set_right(v[idx + offset]);
-
-			// todo get sub vector!!
-
+			offset = floor(len/2);
+			n->set_left(v[offset]);
+			n->set_right(v[len-offset]);
+			// get sub vector
+			vector<int> subleft = { v.begin(), v.begin() + offset };
+			vector<int> subright = { v.begin() + offset, v.end() - offset };
 			// balance left then right
-			balance( v,  n->get_left() );
-			balance( v,  n->get_right() );
+			balance( subleft,  n->get_left() );
+			balance(  subright,  n->get_right() );
 		}
 	}
 

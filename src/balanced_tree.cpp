@@ -112,6 +112,8 @@ int parse_options(int argc, char* argv[])
 	}
 
 
+	vector<int> v = { 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+
 	stringstream ss;
 	ss << "Boo! - " << " file:" << __FILE__ << " line:" << __LINE__ << endl;
 	string s = ss.str();

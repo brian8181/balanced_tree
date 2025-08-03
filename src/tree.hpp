@@ -1,10 +1,14 @@
 #ifndef __tree_HPP
 #define __tree_HPP
 
+#include <iostream>
 #include <vector>
 #include <list>
+#include <cmath>
 #include "node.hpp"
 
+using std::cout;
+using std::endl;
 using std::list;
 using std::vector;
 
@@ -15,6 +19,19 @@ class tree
 public:
 	tree( )
 	{
+
+	}
+
+	tree( vector<node<T>>& nodes )
+	{
+		int len = nodes.size();
+		double h = floor( len / 2 );
+		while(h > 0)
+		{
+			h = floor( h / 2 );
+			cout << "h = " << h << std::endl;
+		}
+
 	}
 
 	tree( node<T>* root )  : _root (root )

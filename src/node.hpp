@@ -9,9 +9,9 @@ public:
 	{
 	}
 
-	node( const T& parent )
+	node( T& parent )
 	{
-		_parent = new node<T>( &parent );
+		_parent = new  node<T>( parent );
 	}
 
 	node( const T& parent, const T& left, const T& right )

@@ -46,8 +46,17 @@ public:
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{
-			cur_node = ( _node->get_value() < cur_node->get_value() )
-				? cur_node->get_right() : cur_node->get_left();
+		// 	if( cur_node->get_left() ! = 0 )
+		// 	{
+		// 		cur_node = cur_node->get_left();
+		// 	}
+		// 	else
+		// 	{
+		// 		if( cur_node->get_right() != 0)
+		// 			cur_node = cur_node->get_right();
+		// 		else
+		// 			cur_node = cur_node->get_parent()->get_right();
+		// 	}
 		}
 		cur_node = _node;
 	}
@@ -60,13 +69,9 @@ public:
 
 	void remove( T val )
 	{
-		node<T>* cur_node = _root;
-		while( cur_node != 0 )
-		{
-			if( cur_node->get_value() == val )
-			{
-			}
-		}
+		node<T>* cur_node = find(val);
+		// now remove
+		_nodes.erase(cur_node);
 	}
 
 	node<T>* find( T val )
@@ -77,8 +82,17 @@ public:
 			if( cur_node->get_value() == val )
 				return cur_node;
 
-			cur_node = ( val < cur_node->get_value() )
-				? cur_node = cur_node->get_right() : cur_node = cur_node->get_left();
+			if( cur_node->get_left() != 0 )
+			{
+				cur_node = cur_node->get_left();
+			}
+			else
+			{
+				if( cur_node->get_right() != 0)
+					cur_node = cur_node->get_right();
+				else
+					cur_node = cur_node->get_parent()->get_right();
+			}
 		}
 		return cur_node; // 0
 	}
@@ -88,9 +102,19 @@ public:
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{
+			// push all nodes
 			nodes.push_back(cur_node);
-			cur_node = (cur_node->get_left() != 0) ? cur_node->get_left() :
-				( (cur_node->get_right() != 0) ? cur_node->get_right() : cur_node = cur_node->get_parent()->get_right() );
+			if( cur_node->get_left() != 0 )
+			{
+				cur_node = cur_node->get_left();
+			}
+			else
+			{
+				if( cur_node->get_right() != 0)
+					cur_node = cur_node->get_right();
+				else
+					cur_node = cur_node->get_parent()->get_right();
+			}
 		}
 	}
 

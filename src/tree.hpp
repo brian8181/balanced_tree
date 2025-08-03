@@ -5,12 +5,14 @@
 #include <vector>
 #include <list>
 #include <cmath>
+#include <span>
 #include "node.hpp"
 
 using std::cout;
 using std::endl;
 using std::list;
 using std::vector;
+//using std::span;
 
 template<typename T>
 class tree
@@ -22,14 +24,41 @@ public:
 
 	}
 
-	tree( vector<T>& nodes )
+	tree( vector<T>& v )
 	{
-		int len = nodes.size();
+		// sort
+		int len = v.size();
 		double h = len;
 		while(h > 0)
 		{
-			h = floor( h / 2 );
+			// int idx = h/2;
+			// int offset = floor(idx/2);
+			// int left_idx = idx - offset;
+			// int right_idx = idx + offset;
+
+
+			//vector<T> vleft = std::span(v);
+			//.subspan(0, h);
 			cout << "h = " << h << std::endl;
+		}
+	}
+
+	void balance( vector<T>& v, node<T>* n )
+	{
+		int len = v.size();
+		int idx = floor(len/2);
+		while(idx > 0)
+		{
+			int offset = floor(idx/2);
+			n = v[idx];
+			n.set_left(v[idx - offset]);
+			n.set_right(v[idx + offset]);
+
+			// todo get sub vector!!
+
+			// balance left then right
+			balance( v,  n->get_left() );
+			balance( v,  n->get_right() );
 		}
 	}
 

@@ -90,34 +90,35 @@ int parse_options(int argc, char* argv[])
 	string path = argv[0];   // get exe file path
 	cout << argv[0] << endl;
 
-	node<int> root;
-	root.set_value(20);
-	node<int> n1;
-	n1.set_value(20);
-	node<int> n2;
-	n2.set_value(6);
-	node<int> n3;
-	n3.set_value(21);
-	tree<int> t;
-	t.insert(&root);
-	t.insert(&n1);
+	// node<int> root;
+	// root.set_value(20);
+	// node<int> n1;
+	// n1.set_value(20);
+	// node<int> n2;
+	// n2.set_value(6);
+	// node<int> n3;
+	// n3.set_value(21);
+	// tree<int> t;
+	// t.insert(&root);
+	// t.insert(&n1);
 
-	std::list<node<int>*> nodes;
-	t.get_all( nodes );
+	// std::list<node<int>*> nodes;
+	// t.get_all( nodes );
 
-	std::list<node<int>*>::iterator end = nodes.end();
-	for(std::list<node<int>*>::iterator iter = nodes.begin(); iter != end; ++iter)
-	{
-		std::cout << (*iter)->get_value() << endl;
-	}
+	// std::list<node<int>*>::iterator end = nodes.end();
+	// for(std::list<node<int>*>::iterator iter = nodes.begin(); iter != end; ++iter)
+	// {
+	// 	std::cout << (*iter)->get_value() << endl;
+	// }
+
+	vector<int> v = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 };
+	tree<int> t(v);
 
 
-	vector<int> v = { 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-
-	stringstream ss;
-	ss << "Boo! - " << " file:" << __FILE__ << " line:" << __LINE__ << endl;
-	string s = ss.str();
-	log_(s);
+	// stringstream ss;
+	// ss << "Boo! - " << " file:" << __FILE__ << " line:" << __LINE__ << endl;
+	// string s = ss.str();
+	// log_(s);
 
 	// comment
 

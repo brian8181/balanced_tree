@@ -22,16 +22,15 @@ public:
 
 	}
 
-	tree( vector<node<T>>& nodes )
+	tree( vector<T>& nodes )
 	{
 		int len = nodes.size();
-		double h = floor( len / 2 );
+		double h = len;
 		while(h > 0)
 		{
 			h = floor( h / 2 );
 			cout << "h = " << h << std::endl;
 		}
-
 	}
 
 	tree( node<T>* root )  : _root (root )

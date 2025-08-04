@@ -21,7 +21,20 @@ class tree
 public:
 	tree( )
 	{
+	}
 
+
+	tree( node<T>* root )  : _root ( root ), _current( root )
+	{
+	}
+
+	tree( const tree& n )
+	{
+		_root = n._root;
+	}
+
+	virtual ~tree( )
+	{
 	}
 
 	tree( vector<T>& v )
@@ -55,19 +68,6 @@ public:
 		}
 	}
 
-	tree( node<T>* root )  : _root (root )
-	{
-	}
-
-	tree( const tree& n )
-	{
-		_root = n._root;
-	}
-
-	virtual ~tree( )
-	{
-	}
-
 	bool operator<( const tree& that )
 	{
 		return false;
@@ -76,6 +76,29 @@ public:
 	node<T>* get_root( )
 	{
 		return _root;
+	}
+
+	node<T>* move_next()
+	{
+		node<T>* cur_node = _current;
+		while( cur_node != 0 )
+		{
+			if( cur_node->get_left() != 0 )
+			{
+				cur_node = cur_node->get_left();
+			}
+			else
+			{
+				if( cur_node->get_right() != 0 )
+					cur_node = cur_node->get_right();
+				else if( cur_node->get_parent()->get_right() =! 0 )
+					cur_node = cur_node->get_parent()->get_right();
+				else
+					cur_node = 0;
+			}
+		}
+		_current = cur_node;
+		return _current;
 	}
 
 	void insert( node<T>* _node )
@@ -170,6 +193,7 @@ public:
 
 private:
 	node<T>* _root;
+	node<T>* _current;
 	vector<node<T>*> _nodes;
 
 };

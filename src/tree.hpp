@@ -25,13 +25,13 @@ public:
 
 	tree( T root )
 	{
-		T* pn(root) = new T*;
+		T* pn = new T;
+		&pn = root;
 		_root = new node( pn );
 	}
 
 	tree( node<T>* root )  : _root ( root ), _current( root )
 	{
-
 	}
 
 	tree( const tree& n )
@@ -41,6 +41,11 @@ public:
 
 	virtual ~tree( )
 	{
+		int len = _nodes.size();
+		for(int i = 0; i < len; ++i)
+		{
+			delete _nodes[1];
+		}
 	}
 
 	tree( vector<T>& v )

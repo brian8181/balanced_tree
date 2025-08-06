@@ -129,7 +129,6 @@ public:
 	node<T>* end()
 	{
 		// insert @ first null node
-		//_nodes.push_back(_node);
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{

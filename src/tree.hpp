@@ -119,9 +119,17 @@ public:
 		insert( pn );
 	}
 
-	void insert( node<T>* _node )
+	void insert( node<T>* pn )
 	{
-		_nodes.push_back(_node);
+		// insert @ first null node
+		node<T>* pend = end();
+		pend = *pn;
+	}
+
+	node<T>* end()
+	{
+		// insert @ first null node
+		//_nodes.push_back(_node);
 		node<T>* cur_node = _root;
 		while( cur_node != 0 )
 		{
@@ -137,7 +145,7 @@ public:
 					cur_node = cur_node->get_parent()->get_right();
 			}
 		}
-		cur_node = _node;
+		return cur_node;
 	}
 
 	void remove( node<T> _node )
@@ -148,9 +156,8 @@ public:
 
 	void remove( T val )
 	{
-		// find
+		// find, then remove
 		node<T>* cur_node = find(val);
-		// now remove
 		_nodes.erase(cur_node);
 	}
 
@@ -174,7 +181,7 @@ public:
 					cur_node = cur_node->get_parent()->get_right();
 			}
 		}
-		return cur_node; // 0
+		return cur_node; // null, 0
 	}
 
 	void get_all( std::list<node<T>*>& nodes )

@@ -101,6 +101,13 @@ public:
 		return _current;
 	}
 
+	void insert( T& v )
+	{
+		node<T>* pn = new node<T>;
+		pn->set_value( v );
+		insert( pn );
+}
+
 	void insert( node<T>* _node )
 	{
 		_nodes.push_back(_node);

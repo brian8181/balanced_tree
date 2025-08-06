@@ -56,9 +56,10 @@ public:
 		return _value;
 	}
 
-	void set_value( T n )
+	void set_value( T v )
 	{
-		_value = n;
+		delete &_value;
+		_value( v ) = new T;
 	}
 
 	node<T>* get_parent( )

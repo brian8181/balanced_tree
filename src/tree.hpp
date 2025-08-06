@@ -23,9 +23,15 @@ public:
 	{
 	}
 
+	tree( T root )
+	{
+		T* pn(root) = new T*;
+		_root = new node( pn );
+	}
 
 	tree( node<T>* root )  : _root ( root ), _current( root )
 	{
+
 	}
 
 	tree( const tree& n )
@@ -106,7 +112,7 @@ public:
 		node<T>* pn = new node<T>;
 		pn->set_value( v );
 		insert( pn );
-}
+	}
 
 	void insert( node<T>* _node )
 	{
